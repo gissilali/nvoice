@@ -1,12 +1,14 @@
 import * as express from 'express';
 import { getSchema } from './graphql/schema';
 import { ApolloServer } from 'apollo-server-express';
+import { createContext } from './context';
 
-const main = async () => {
+const startServer = async () => {
   const app = express();
   const schema = getSchema;
   const apolloServer = new ApolloServer({
     schema,
+    context: createContext,
   });
   const port = process.env.port || 3333;
 
@@ -24,4 +26,4 @@ const main = async () => {
   server.on('error', console.error);
 };
 
-main();
+startServer();

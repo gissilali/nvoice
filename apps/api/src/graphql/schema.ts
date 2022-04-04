@@ -1,15 +1,16 @@
 import { declarativeWrappingPlugin, makeSchema } from 'nexus';
-import { Query } from './Query';
 import * as path from 'path';
 import { applyMiddleware } from 'graphql-middleware';
+import * as types from './resolvers';
+import { __currentAppDir } from '../utils';
 
 export const getSchema = applyMiddleware(
   makeSchema({
-    types: [Query],
+    types,
     plugins: [declarativeWrappingPlugin({ disable: true })],
     outputs: {
-      schema: path.join(process.cwd(), 'schema.graphql'),
-      typegen: path.join(process.cwd(), 'schema-typegen.ts'),
+      schema: path.join(__currentAppDir, 'schema.graphql'),
+      typegen: path.join(__currentAppDir, 'schema-typegen.ts'),
     },
   })
 );

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import styles from './index.module.css';
 import { Input } from '@nvoice/ui';
+import client from '../apollo-client';
+import { gql } from 'apollo-server-core/dist/gql';
 
-export function Index() {
+export function Index({ greeting }) {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3333/api').then((data) => {
-      console.log({ data });
-    });
+    setMessage(greeting);
   }, []);
 
   return (
@@ -26,3 +26,19 @@ export function Index() {
 }
 
 export default Index;
+
+export async function getServerSideProps() {
+  const { data } = await client.query({
+    query: gql`
+      query Query {
+        hello
+      }
+    `,
+  });
+
+  return {
+    props: {
+      greeting: data.hello,
+    },
+  };
+}

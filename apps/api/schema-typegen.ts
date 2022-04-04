@@ -28,6 +28,17 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CreateUserInput: { // input type
+    email?: string | null; // String
+    name?: string | null; // String
+    password?: string | null; // String
+  }
+  FindAccountInput: { // input type
+    id: number; // Int!
+  }
+  FindUserInput: { // input type
+    id: number; // Int!
+  }
 }
 
 export interface NexusGenEnums {
@@ -43,6 +54,14 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Account: { // root type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: string | null; // String
+    name?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    user?: NexusGenRootTypes['User'] | null; // User
+  }
+  Mutation: {};
   Query: {};
   User: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -66,8 +85,21 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Account: { // field return type
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: string | null; // String
+    name: string | null; // String
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    user: NexusGenRootTypes['User'] | null; // User
+  }
+  Mutation: { // field return type
+    user: NexusGenRootTypes['User'] | null; // User
+  }
   Query: { // field return type
+    account: NexusGenRootTypes['Account'] | null; // Account
     hello: string | null; // String
+    user: NexusGenRootTypes['User'] | null; // User
+    userAccounts: NexusGenRootTypes['Account'][]; // [Account!]!
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
@@ -81,8 +113,21 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Account: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    name: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+  }
+  Mutation: { // field return type name
+    user: 'User'
+  }
   Query: { // field return type name
+    account: 'Account'
     hello: 'String'
+    user: 'User'
+    userAccounts: 'Account'
   }
   User: { // field return type name
     createdAt: 'DateTime'
@@ -96,6 +141,19 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    user: { // args
+      input: NexusGenInputs['CreateUserInput']; // CreateUserInput!
+    }
+  }
+  Query: {
+    account: { // args
+      input: NexusGenInputs['FindAccountInput']; // FindAccountInput!
+    }
+    user: { // args
+      input: NexusGenInputs['FindUserInput']; // FindUserInput!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
@@ -106,7 +164,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 
