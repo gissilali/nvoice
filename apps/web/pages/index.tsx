@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
 import styles from './index.module.css';
-import { Input } from '@nvoice';
+import { Input } from '@nvoice/ui';
 
 export function Index() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3333/api')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMessage(data.message);
-      });
+    fetch('http://localhost:3333/api').then((data) => {
+      console.log({ data });
+    });
   }, []);
 
   return (
