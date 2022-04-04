@@ -19,6 +19,7 @@ const main = async () => {
   });
   const server = app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/api`);
+    console.log(`GraphQL  at http://localhost:${port}/graphql`);
   });
   server.on('error', console.error);
 };
