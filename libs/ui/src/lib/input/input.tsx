@@ -23,6 +23,8 @@ export function Input({
         ref={elementRef}
         className="peer block placeholder-transparent 
         bg-white 
+        text-slate-700
+        font-light	
         border-gray-300 
         border
          focus:border-blue-500 
