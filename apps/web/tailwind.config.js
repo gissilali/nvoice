@@ -19,9 +19,12 @@ module.exports = {
         danger: '#dc2626',
         warning: '#fbbf24',
       },
+      fontFamily: {
+        display: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
     },
     fontFamily: {
-      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      sans: ['AvenirNext', ...defaultTheme.fontFamily.sans],
     },
   },
   plugins: [],
